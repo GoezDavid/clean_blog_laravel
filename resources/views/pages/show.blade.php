@@ -5,9 +5,9 @@
     <title></title>
   </head>
   <body>
-<h1>{{$titre}}</h1>
-<div class="">
-{{$texte}}
-</div>
+    <h1>{{$page->titre}}</h1>
+    <div>
+{{($page->texte)}}
+    </div>
   </body>
 </html>
