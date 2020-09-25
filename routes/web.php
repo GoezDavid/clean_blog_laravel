@@ -13,12 +13,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-use App\Http\Controllers\PagesController;
+// VIEW COMPOSERS ------------------------------------------
+  View::composer('pages._menu', function($view){
+    $view->with('pages', App\Models\Page::orderBy('tri', 'asc')->get());
+  });
 
-     Route::get('/', [PagesController::class, 'show'])->name('homepage');
-     Route::get('/pages/{id}/{slug}', [PagesController::class, 'show'])
-      ->where([
-        'id' => '[1-9] [0-9]*',
-        'slug' => '[a-z0-9] [a-z0-9\-]*'
-      ])
-      ->name('pages.show');
+  View::composer('posts._index', function($view){
+    $view->with('posts', App\Models\Post::orderBy('datePublication', 'desc')->take(10)->get());
+  });
+
+
+// ROUTES DES PAGES ----------------------------------------
+  use App\Http\Controllers\PagesController;
+    Route::get('/', [PagesController::class, 'show'])->name('homepage');
+
+    Route::get('/pages/{id}/{slug}', [PagesController::class, 'show'])
+           ->where ([
+             'id'   => '[1-9][0-9]*',
+             'slug' => '[a-z0-9][a-z0-9\-]*'
+           ])
+           ->name('pages.show');
