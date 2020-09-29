@@ -19,7 +19,7 @@
         P{{ $post->sousTitre }}
       </h3>
     </a>
-    <p class="post-meta">Posted on {{ $post->datePublication }}</p>
+    <p class="post-meta">Posted on {{ $post->datePublication }} by {{ $post->user}}</p>
   </div>
   <hr>
 @endforeach
