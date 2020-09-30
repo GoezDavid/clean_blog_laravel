@@ -33,3 +33,13 @@ use Illuminate\Support\Facades\Route;
              'slug' => '[a-z0-9][a-z0-9\-]*'
            ])
            ->name('pages.show');
+
+// ROUTES DES POSTS----------------------------------------------------
+  use App\Http\Controllers\PostsController;
+
+    Route::get('/posts/{post}/{slug}', [PostsController::class, 'show'])
+    ->where ([
+      'post' => '[1-9][0-9]*',
+      'slug' => '[a-z0-9][a-z0-9]*'
+    ])
+    ->name('posts.show');
